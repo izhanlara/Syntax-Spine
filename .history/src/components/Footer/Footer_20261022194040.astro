@@ -1,0 +1,54 @@
+---
+const logo = "/logo.png";
+
+const FooterItems = [
+    {
+      title: "Logo",
+      description: "Syntax Spine Logo",
+      link: "/",
+      image: logo,
+    },
+  {
+    title: "Syntax Spine",
+    description: "A website that provides a collection of syntax examples and code snippets for various programming languages.",
+    link: "/",
+  },
+  {
+    title: "About",
+    description: "Learn more about Syntax Spine and its mission to help developers improve their coding skills.",
+    link: "/about",
+  },
+  {
+    title: "Contact",
+    description: "Get in touch with the Syntax Spine team for support, feedback, or collaboration opportunities.",
+    link: "/contact",
+  },
+];
+
+const FooterLinks = [
+  {
+    title: "GitHub",
+    link: "https://github.com/izhanlara/Syntax-Spine",
+  },
+  {
+    title: "LinkedIn",
+    link: "https://www.linkedin.com/in/izhanlara",
+  },
+];
+---
+<footer>
+  <div class="footer-items">    
+    {FooterItems.map((item) => (
+      <div class="footer-item">
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <a href={item.link}>Learn More</a>
+      </div>
+    ))}
+  </div>
+  <div class="footer-links">
+    {FooterLinks.map((link) => (
+      <a href={link.link} target="_blank" rel="noopener noreferrer">{link.title}</a>
+    ))}
+  </div>
+</footer>   

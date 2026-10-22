@@ -1,0 +1,11 @@
+---
+import type { Header } from "../../model/header";
+---
+
+<nav>
+    <ul>
+        @for (const item of Object.entries(Header)) {
+            <li><a href={item[1]}>{item[0]}</a></li>
+        }
+    </ul>
+</nav>

@@ -1,0 +1,14 @@
+---
+const menuItems = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Portfolio', href: 'https://izhanlara.com', target: "_blank", rel: "noopener noreferrer" },
+  { name: 'Acerca de', href: '/about' },
+];
+---
+<nav class="c-header">
+  <ul class="c-header__menu">
+    {menuItems.map((item) => (
+      <li><a href={item.href}>{item.name}</a></li>
+    ))}
+  </ul>
+</nav>

@@ -1,0 +1,26 @@
+---
+import { Book } from '../model/books.ts';
+---
+
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Syntax & Spine</title>
+  </head>
+  <body>
+    <main>
+      <h1>Mi biblioteca de desarrollo</h1>
+
+      <div class="books-grid">
+        {books.map((book: Book) => (
+          <article>
+            <h2>{book.bookName}</h2>
+            <p>{book.author}</p>
+          </article>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>

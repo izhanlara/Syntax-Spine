@@ -1,0 +1,17 @@
+---
+import type { HeaderModel } from "../../model/header";
+
+const header: HeaderModel = [];
+
+---
+
+
+<nav>
+    <ul>
+        {header.map((HeaderModel) => (
+            <li>
+                <a href={HeaderModel.Inicio}>{HeaderModel.Inicio}</a>
+            </li>
+        ))}
+    </ul>
+</nav>
