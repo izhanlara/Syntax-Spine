@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# hisotry files
+.history/
+
 # generated types
 .astro/
 
