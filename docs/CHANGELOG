@@ -4,17 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This project follows the principles of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
-
-### Planned
-
-- Set up the Astro application.
-- Integrate the frontend with Supabase.
-- Define the book data model and required fields.
-- Display books dynamically from the database.
-- Establish the initial UI and responsive layout.
-
-## [0.1.0] - TBD
+## [0.1.0] - Data
 
 ### Added
 
@@ -22,3 +12,6 @@ This project follows the principles of [Keep a Changelog](https://keepachangelog
 - Create the initial project documentation.
 - Add contribution guidelines.
 - Prepare the documentation structure.
+- Footer 
+- Header
+- Eslint
