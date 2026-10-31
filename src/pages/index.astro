@@ -1,18 +1,23 @@
 ---
-import Header from "@components/Header/Header.astro";
-import Footer from "@components/Footer/Footer.astro";
-
-
-const titleWebsite = "Syntax Spine";
+import "../styles/global.scss";
 ---
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{titleWebsite}</title>
+    <title>Syntax Spine</title>
   </head>
   <body>
-    <Header/>
-    <Footer/>
+    <main class="layout">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="hero__eyebrow">Syntax & Spine</p>
+        <h1 id="hero-title" class="hero__title">Choose your language / Elige tu idioma</h1>
+        <p class="hero__description">The project is available in Spanish and English.</p>
+        <div class="locale-selector">
+          <a class="locale-selector__link" href="/es-es">Español</a>
+          <a class="locale-selector__link" href="/en-en">English</a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

@@ -1,0 +1,48 @@
+---
+import type { Book } from '@models/book';
+import { getUI, type Locale } from '../../i18n/ui';
+
+interface Props {
+  lang: Locale;
+  book: Book;
+}
+
+const { lang, book } = Astro.props;
+const ui = getUI(lang);
+const hasCover = Boolean(book.coverUrl);
+---
+
+<article class="book-card" aria-label={`${ui.books.cardAriaPrefix}: ${book.title}`}>
+  <div class="book-card__cover-wrap">
+    {hasCover ? (
+      <img
+        class="book-card__cover"
+        src={book.coverUrl}
+        alt={`${ui.books.coverAltPrefix} ${book.title}`}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <div class="book-card__cover-placeholder" aria-hidden="true">
+        <span>{ui.books.noCover}</span>
+      </div>
+    )}
+  </div>
+
+  <div class="book-card__content">
+    <h3 class="book-card__title">{book.title}</h3>
+    <p class="book-card__author">{book.author}</p>
+    <p class="book-card__description">{book.description}</p>
+
+    <div class="book-card__footer">
+      <span class="book-card__year">{book.year}</span>
+      {book.tags.length > 0 && (
+        <div class="book-card__tags">
+          {book.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</article>
