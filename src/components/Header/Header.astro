@@ -26,19 +26,18 @@ const languageItems = locales.map((locale: Locale) => ({
     <p class="site-header__brand">Syntax & Spine</p>
     <div class="site-header__menu-wrap">
       <ul class="site-header__menu">
-        {menuItems.map((item) => (
+        {menuItems.map((item: typeof menuItems[number]) => (
           <li class="site-header__menu-item"><a href={item.href} target={item.target} rel={item.rel}>{item.name}</a></li>
         ))}
       </ul>
       <div class="site-header__lang">
-        <label class="site-header__lang-label" for="language-select">{languageSelectorLabel}</label>
         <select
           id="language-select"
           class="site-header__lang-select"
           aria-label={languageSelectorLabel}
           onchange="window.location.href=this.value"
         >
-          {languageItems.map((item) => (
+          {languageItems.map((item: typeof languageItems[number]) => (
             <option value={item.value} selected={item.selected}>{item.label}</option>
           ))}
         </select>
@@ -64,10 +63,7 @@ const languageItems = locales.map((locale: Locale) => ({
     const root = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
 
-    if (!themeToggle) {
-      return;
-    }
-
+    if (themeToggle) {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     const getStoredTheme = () => {
@@ -110,5 +106,6 @@ const languageItems = locales.map((locale: Locale) => ({
         applyTheme(event.matches ? 'dark' : 'light');
       }
     });
+  }
   })();
 </script>
