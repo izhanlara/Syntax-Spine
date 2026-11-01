@@ -1,0 +1,49 @@
+.site-footer {
+  margin-top: var(--space-xl);
+  border-top: 1px solid var(--hairline);
+  background-color: var(--canvas-secondary);
+  padding: var(--space-xl) var(--margin-mobile);
+}
+
+.site-footer__items,
+.site-footer__links {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-footer__items {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.site-footer__item {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.site-footer__item-title {
+  font-family: "Source Serif 4", serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.site-footer__item-description,
+.site-footer__item-link,
+.site-footer__link {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.site-footer__item-link:hover,
+.site-footer__link:hover {
+  color: var(--text-primary);
+}
+
+.site-footer__links {
+  display: flex;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+}

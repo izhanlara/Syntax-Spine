@@ -1,0 +1,34 @@
+---
+import "@styles/global.scss";
+
+import BooksList from "@components/Books/BooksList.astro";
+import Footer from "@components/Footer/Footer.astro";
+import Header from "@components/Header/Header.astro";
+import { getBooks } from "@services/books.service";
+import { getBooksErrorMessage, getUI } from "@i18n/ui";
+
+const lang = "en-en";
+const ui = getUI(lang);
+const { books, error } = await getBooks();
+const localizedBooksError = getBooksErrorMessage(lang, error);
+---
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{ui.pageTitle}</title>
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main class="layout" id="contenido-principal">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="hero__eyebrow">{ui.hero.eyebrow}</p>
+        <h1 id="hero-title" class="hero__title">{ui.hero.title}</h1>
+        <p class="hero__description">{ui.hero.description}</p>
+      </section>
+
+      <BooksList lang={lang} books={books} errorMessage={localizedBooksError} />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

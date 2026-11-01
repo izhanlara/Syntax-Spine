@@ -1,0 +1,114 @@
+---
+import type { Props } from '@models/props';
+import { getUI, locales, type Locale } from '@i18n/ui';
+
+const { lang } = Astro.props as Props;
+const ui = getUI(lang);
+
+const menuItems = [
+  { name: ui.nav.home, href: `/${lang}` },
+  { name: ui.nav.portfolio, href: 'https://izhanlara.com', target: '_blank', rel: 'noopener noreferrer' },
+  { name: ui.nav.docs, href: '/docs' },
+  { name: ui.nav.collection, href: `/${lang}#contenido-principal` },
+];
+
+const languageSelectorLabel = lang === 'es-es' ? 'Idioma' : 'Language';
+const themeLabelLight = lang === 'es-es' ? 'Activar modo oscuro' : 'Enable dark mode';
+const themeLabelDark = lang === 'es-es' ? 'Activar modo claro' : 'Enable light mode';
+const languageItems = locales.map((locale: Locale) => ({
+  value: `/${locale}`,
+  label: getUI(locale).languageName,
+  selected: lang === locale,
+}));
+---
+<header class="site-header">
+  <nav class="site-header__nav" aria-label={ui.nav.ariaLabel}>
+    <p class="site-header__brand">Syntax & Spine</p>
+    <div class="site-header__menu-wrap">
+      <ul class="site-header__menu">
+        {menuItems.map((item) => (
+          <li class="site-header__menu-item"><a href={item.href} target={item.target} rel={item.rel}>{item.name}</a></li>
+        ))}
+      </ul>
+      <div class="site-header__lang">
+        <label class="site-header__lang-label" for="language-select">{languageSelectorLabel}</label>
+        <select
+          id="language-select"
+          class="site-header__lang-select"
+          aria-label={languageSelectorLabel}
+          onchange="window.location.href=this.value"
+        >
+          {languageItems.map((item) => (
+            <option value={item.value} selected={item.selected}>{item.label}</option>
+          ))}
+        </select>
+        <button
+          id="theme-toggle"
+          class="site-header__theme-toggle"
+          type="button"
+          aria-label={themeLabelLight}
+          aria-pressed="false"
+          data-label-light={themeLabelLight}
+          data-label-dark={themeLabelDark}
+        >
+          <span class="site-header__theme-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (() => {
+    const storageKey = 'syntax-spine-theme';
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+
+    if (!themeToggle) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const getStoredTheme = () => {
+      const storedTheme = localStorage.getItem(storageKey);
+      return storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : null;
+    };
+
+    const getInitialTheme = () => {
+      const storedTheme = getStoredTheme();
+      if (storedTheme) {
+        return storedTheme;
+      }
+
+      return mediaQuery.matches ? 'dark' : 'light';
+    };
+
+    const applyTheme = (theme) => {
+      root.setAttribute('data-theme', theme);
+
+      const isDark = theme === 'dark';
+      const lightLabel = themeToggle.getAttribute('data-label-light') || '';
+      const darkLabel = themeToggle.getAttribute('data-label-dark') || '';
+
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? darkLabel : lightLabel);
+    };
+
+    applyTheme(getInitialTheme());
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      localStorage.setItem(storageKey, nextTheme);
+      applyTheme(nextTheme);
+    });
+
+    mediaQuery.addEventListener('change', (event) => {
+      if (!getStoredTheme()) {
+        applyTheme(event.matches ? 'dark' : 'light');
+      }
+    });
+  })();
+</script>

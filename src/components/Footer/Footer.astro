@@ -1,0 +1,34 @@
+---
+import type { Props } from '@models/props';
+import { getUI } from '@i18n/ui';
+
+const { lang } = Astro.props as Props;
+const ui = getUI(lang);
+
+const footerLinks = [
+  {
+    title: "GitHub",
+    link: "https://github.com/izhanlara/Syntax-Spine",
+  },
+  {
+    title: "LinkedIn",
+    link: "https://www.linkedin.com/in/izhanlara",
+  },
+];
+---
+<footer class="site-footer">
+  <div class="site-footer__items">    
+    {ui.footer.items.map((item) => (
+      <div class="site-footer__item">
+        <h3 class="site-footer__item-title">{item.title}</h3>
+        <p class="site-footer__item-description">{item.description}</p>
+        <a class="site-footer__item-link" href={item.link}>{ui.footer.readMore}</a>
+      </div>
+    ))}
+  </div>
+  <div class="site-footer__links">
+    {footerLinks.map((link: { title: string; link: string }) => (
+      <a class="site-footer__link" href={link.link} target="_blank" rel="noopener noreferrer">{link.title}</a>
+    ))}
+  </div>
+</footer>

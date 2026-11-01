@@ -1,0 +1,44 @@
+@media (min-width: 768px) {
+  .site-header__nav,
+  .layout,
+  .site-footer {
+    padding-left: var(--margin-tablet);
+    padding-right: var(--margin-tablet);
+  }
+
+  .hero__title {
+    font-size: 2.75rem;
+    line-height: 3.25rem;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header__nav,
+  .layout,
+  .site-footer {
+    padding-left: var(--margin-desktop);
+    padding-right: var(--margin-desktop);
+  }
+}
+
+@media (max-width: 767px) {
+  .site-header__nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-header__menu {
+    flex-wrap: wrap;
+  }
+
+  .site-header__menu-wrap {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .books__grid {
+    grid-template-columns: 1fr;
+  }
+}

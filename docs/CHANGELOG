@@ -4,17 +4,38 @@ All notable changes to this project will be documented in this file.
 
 This project follows the principles of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [0.2.0] - 2026-10-30
 
-### Planned
+### Added
 
-- Set up the Astro application.
-- Integrate the frontend with Supabase.
-- Define the book data model and required fields.
-- Display books dynamically from the database.
-- Establish the initial UI and responsive layout.
+- Supabase client integration with environment validation.
+- Books service layer with table fallback and runtime diagnostics.
+- Book model mapping for heterogeneous schemas (`title`, `bookName`, image fields).
+- Book card UI with cover image support and graceful placeholder.
+- Internationalized routes with locale paths (`/es-es`, `/en-en`).
+- Language selector in the header using a scalable dropdown.
+- Localized UI dictionary for Spanish and English.
 
-## [0.1.0] - TBD
+### Changed
+
+- Main index now acts as a language entry page.
+- Legacy `/es` and `/en` routes redirect to `/es-es` and `/en-en`.
+- Styling architecture refactored from a monolithic file into modular SCSS partials:
+  - `src/styles/_tokens.scss`
+  - `src/styles/_base.scss`
+  - `src/styles/_header.scss`
+  - `src/styles/_layout.scss`
+  - `src/styles/_books.scss`
+  - `src/styles/_footer.scss`
+  - `src/styles/_responsive.scss`
+
+### Fixed
+
+- Supabase URL normalization for `postgresql://...` input in `.env`.
+- Table-not-found handling with clear guidance when schema/table mismatch happens.
+- Runtime module resolution issues for i18n imports by moving to stable relative imports.
+
+## [0.1.0] - Initial setup
 
 ### Added
 
@@ -22,3 +43,6 @@ This project follows the principles of [Keep a Changelog](https://keepachangelog
 - Create the initial project documentation.
 - Add contribution guidelines.
 - Prepare the documentation structure.
+- Footer.
+- Header.
+- ESLint.
