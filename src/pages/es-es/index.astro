@@ -1,11 +1,10 @@
 ---
-import "../../styles/global.scss";
-
+import "@styles/global.scss";
 import BooksList from "@components/Books/BooksList.astro";
 import Footer from "@components/Footer/Footer.astro";
 import Header from "@components/Header/Header.astro";
 import { getBooks } from "@services/books.service";
-import { getBooksErrorMessage, getUI } from "../../i18n/ui";
+import { getBooksErrorMessage, getUI } from "@i18n/ui";
 
 const lang = "es-es";
 const ui = getUI(lang);

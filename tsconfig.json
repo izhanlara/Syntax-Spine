@@ -10,7 +10,8 @@
       "@services/*": ["./src/services/*"],
       "@libs/*": ["./src/libs/*"],
       "@models/*": ["./src/models/*"],
-      "@i18n/*": ["./src/i18n/*"]
+      "@i18n/*": ["./src/i18n/*"],
+      "@converters/*": ["./src/components/converter/*"]
     }
   }
 }

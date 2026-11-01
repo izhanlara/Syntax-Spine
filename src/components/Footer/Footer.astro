@@ -1,6 +1,6 @@
 ---
 import type { Props } from '@models/props';
-import { getUI } from '../../i18n/ui';
+import { getUI } from '@i18n/ui';
 
 const { lang } = Astro.props as Props;
 const ui = getUI(lang);
@@ -27,7 +27,7 @@ const footerLinks = [
     ))}
   </div>
   <div class="site-footer__links">
-    {footerLinks.map((link) => (
+    {footerLinks.map((link: { title: string; link: string }) => (
       <a class="site-footer__link" href={link.link} target="_blank" rel="noopener noreferrer">{link.title}</a>
     ))}
   </div>

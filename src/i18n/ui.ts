@@ -1,9 +1,6 @@
 export const locales = ['es-es', 'en-en'] as const;
-
-import type { BooksServiceError } from '../services/books.service';
-
+import type { BooksServiceError } from '@models/book-service';
 export type Locale = (typeof locales)[number];
-
 export interface UIContent {
     pageTitle: string;
     languageName: string;
@@ -173,18 +170,17 @@ export function getBooksErrorMessage(locale: Locale, error: BooksServiceError | 
 
     const bookErrors = getUI(locale).books.errors;
 
-    switch (error.code) {
-        case 'SUPABASE_NOT_CONFIGURED':
-            return bookErrors.supabaseNotConfigured;
-        case 'EMPTY_RESULT':
-            return bookErrors.emptyResult;
-        case 'TABLE_NOT_FOUND':
-            return bookErrors.tableNotFound;
-        case 'QUERY_FAILED':
-            return bookErrors.queryFailed;
-        case 'UNEXPECTED_ERROR':
-            return bookErrors.unexpected;
-        default:
-            return bookErrors.unexpected;
+    if (error.code === 'SUPABASE_NOT_CONFIGURED') {
+        return bookErrors.supabaseNotConfigured;
+    } else if (error.code === 'EMPTY_RESULT') {
+        return bookErrors.emptyResult;
+    } else if (error.code === 'TABLE_NOT_FOUND') {
+        return bookErrors.tableNotFound;
+    } else if (error.code === 'QUERY_FAILED') {
+        return bookErrors.queryFailed;
+    } else if (error.code === 'UNEXPECTED_ERROR') {
+        return bookErrors.unexpected;
     }
+
+    return null;
 }

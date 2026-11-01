@@ -1,6 +1,6 @@
 ---
 import type { Props } from '@models/props';
-import { getUI } from '../../i18n/ui';
+import { getUI } from '@i18n/ui';
 import BookCard from './BookCard.astro';
 
 const { lang, books, errorMessage = null } = Astro.props as Props;
@@ -17,13 +17,13 @@ const ui = getUI(lang);
     <p class="books__state books__state--error" role="alert">{errorMessage}</p>
   )}
 
-  {!errorMessage && books.length === 0 && (
+  {!errorMessage && books?.length === 0 && (
     <p class="books__state">{ui.books.empty}</p>
   )}
 
-  {!errorMessage && books.length > 0 && (
+  {!errorMessage && books!.length > 0 && (
     <ul class="books__grid" aria-label={ui.books.listAriaLabel}>
-      {books.map((book) => (
+      {books!.map((book) => (
         <li class="books__grid-item">
           <BookCard lang={lang} book={book} />
         </li>

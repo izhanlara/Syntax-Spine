@@ -1,6 +1,6 @@
 ---
 import type { Props } from '@models/props';
-import { getUI, locales } from '../../i18n/ui';
+import { getUI, locales, type Locale } from '@i18n/ui';
 
 const { lang } = Astro.props as Props;
 const ui = getUI(lang);
@@ -15,7 +15,7 @@ const menuItems = [
 const languageSelectorLabel = lang === 'es-es' ? 'Idioma' : 'Language';
 const themeLabelLight = lang === 'es-es' ? 'Activar modo oscuro' : 'Enable dark mode';
 const themeLabelDark = lang === 'es-es' ? 'Activar modo claro' : 'Enable light mode';
-const languageItems = locales.map((locale) => ({
+const languageItems = locales.map((locale: Locale) => ({
   value: `/${locale}`,
   label: getUI(locale).languageName,
   selected: lang === locale,
@@ -106,11 +106,9 @@ const languageItems = locales.map((locale) => ({
     });
 
     mediaQuery.addEventListener('change', (event) => {
-      if (getStoredTheme()) {
-        return;
+      if (!getStoredTheme()) {
+        applyTheme(event.matches ? 'dark' : 'light');
       }
-
-      applyTheme(event.matches ? 'dark' : 'light');
     });
   })();
 </script>

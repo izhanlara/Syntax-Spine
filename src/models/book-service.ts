@@ -12,7 +12,7 @@ type BooksServiceErrorCode =
     | 'QUERY_FAILED'
     | 'UNEXPECTED_ERROR';
 
-interface BooksServiceError {
+export interface BooksServiceError {
     code: BooksServiceErrorCode;
     debugMessage: string;
     tableName?: string;

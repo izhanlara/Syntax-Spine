@@ -1,8 +1,7 @@
 import { isSupabaseConfigured, supabase } from '@libs/superbase/superbase';
-import { mapBookRowToBook, type BookRow } from '@models/book';
+import { type Book, type BookRow } from '@models/book';
 import type { BooksQueryResult } from '@models/book-service';
-
-
+import { mapBookRowToBook } from '@components/converter/mapbook-to-row.converter';
 
 const configuredTable = import.meta.env.PUBLIC_SUPABASE_BOOKS_TABLE?.trim();
 const tableCandidates = configuredTable
@@ -58,8 +57,8 @@ export async function getBooks(): Promise<BooksQueryResult> {
 
             if (!errorMessage) {
                 const books = rows
-                    .map((book, index) => mapBookRowToBook(book, index))
-                    .sort((firstBook, secondBook) => firstBook.title.localeCompare(secondBook.title, 'es'));
+                    .map((book: BookRow, index: number) => mapBookRowToBook(book, index))
+                    .sort((firstBook: Book, secondBook: Book) => firstBook.title.localeCompare(secondBook.title, 'es'));
 
                 if (books.length === 0) {
                     return {
